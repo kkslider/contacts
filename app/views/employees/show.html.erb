@@ -1,8 +1,21 @@
 <% if !current_user.staff.empty? %>
+<h3><%= @employee.name %></h3>
+<p>Email: <%= @employee.email %></p>
+<% if @employee.phone %>
+  <p>Phone: <%= @employee.phone %></p>
+<% end %>
+
 <h3>Your Staff</h3>
 <ul>
   <% current_user.staff.each do |member| %>
-    <li><%= member.name %>&nbsp;&nbsp;&nbsp;<%= link_to("Delete", employee_url, :method => :delete)%></li>
+    <li><%= link_to(member.name, employee_url(member))%></li>
   <% end %>
 <% end %>
 </ul>
+
+<% if current_user.id != @employee.id %>
+<%= link_to("Return to your page", employee_url(current_user)) %>
+<% end %>
+
+
+
