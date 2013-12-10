@@ -1,4 +1,4 @@
-class SessionController < ApplicationController
+class SessionsController < ApplicationController
   def create
     user = Employee.find_by_credentials(
       params[:user][:email],
