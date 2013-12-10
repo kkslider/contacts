@@ -8,7 +8,7 @@
 <%= link_to("Edit", edit_employee_url)%>
 <% end %>
 
-<% if @employee.is_manager? %>
+<% if current_user.id == @employee.id && @employee.is_manager? %>
 <h3>Staff</h3>
 <%= link_to("Add staff", new_employee_url)%>
 <ul>
@@ -16,7 +16,7 @@
     <li><%= link_to(member.name, employee_url(member))%></li>
   <% end %>
 </ul>
-<% else %>
+<% elsif !@employee.is_manager? %>
 <h3>Manager</h3>
 <p><%= link_to(@employee.manager.name, employee_url(@employee.manager)) %></p>
 <% end %>

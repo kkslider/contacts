@@ -5,7 +5,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(params[:employee])
     @employee.manager_id = current_user.id
     if @employee.save
-      login_user!(@employee)
+      redirect_to employee_url(current_user)
     else
       flash.now[:error] = @employee.errors.full_messages
       render :new
