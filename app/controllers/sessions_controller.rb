@@ -1,13 +1,15 @@
 class SessionsController < ApplicationController
+  def new
+  end
+  
   def create
-    user = Employee.find_by_credentials(
-      params[:user][:email],
-      params[:user][:password] 
+    user = Employee.find_by_email(
+      params[:employee][:email],
     )
     
     if user
       login_user!(user)
-      
+      redirect_to employee_url(user)
     else
       flash.now[:error] = "Invalid email/password combination"
       render :new
@@ -16,6 +18,6 @@ class SessionsController < ApplicationController
   
   def destroy
     logout_current_user!
-    render :json => nil
+    redirect_to root_url
   end
 end

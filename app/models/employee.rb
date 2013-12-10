@@ -21,7 +21,16 @@ class Employee < ActiveRecord::Base
   :primary_key => :id
   )
   
+  def self.generate_token
+    SecureRandom.urlsafe_base64(16)
+  end
+  
   def reset_session_token
     self.session_token = self.class.generate_token
+  end
+  
+  def reset_session_token!
+    self.session_token = self.class.generate_token
+    self.save!
   end
 end

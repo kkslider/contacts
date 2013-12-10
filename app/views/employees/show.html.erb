@@ -1,0 +1,8 @@
+<% if !current_user.staff.empty? %>
+<h3>Your Staff</h3>
+<ul>
+  <% current_user.staff.each do |member| %>
+    <li><%= member.name %>&nbsp;&nbsp;&nbsp;<%= link_to("Delete", employee_url, :method => :delete)%></li>
+  <% end %>
+<% end %>
+</ul>
