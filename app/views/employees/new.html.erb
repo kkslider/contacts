@@ -1,0 +1,19 @@
+<form action="<%= employees_url %>" method="post">
+  <input type="hidden" 
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+  <label for="employee_email">Email:</label>
+  <input type="text" name="employee[email]" id="employee_email">
+  <br>
+  
+  <label for="employee_name">Name:</label>
+  <input type="text" name="employee[name]" id="employee_name">
+  <br>
+  
+  <label for="employee_phone">Phone:</label>
+  <input type="text" name="employee[phone]" id="employee_phone">
+  <br>
+  
+  
+  <input type="submit" value="Create Staff" class="btn btn-primary">
+</form>

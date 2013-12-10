@@ -1,6 +1,9 @@
 class EmployeesController < ApplicationController
+  before_filter :require_user_to_be_manager!, :only => [:new, :create]
+  
   def create
     @employee = Employee.new(params[:employee])
+    @employee.manager_id = current_user.id
     if @employee.save
       login_user!(@employee)
     else
@@ -29,4 +32,13 @@ class EmployeesController < ApplicationController
       render :edit
     end
   end
+  
+  private
+  
+  def require_user_to_be_manager!
+    if !current_user.is_manager?
+      redirect_to employee_url(current_user)
+    end
+  end
+  
 end

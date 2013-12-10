@@ -21,6 +21,10 @@ class Employee < ActiveRecord::Base
   :primary_key => :id
   )
   
+  def is_manager?
+    self.manager.nil?
+  end
+  
   def self.generate_token
     SecureRandom.urlsafe_base64(16)
   end

@@ -4,13 +4,13 @@
 <% if @employee.phone %>
   <p>Phone: <%= @employee.phone %></p>
 <% end %>
-<% if current_user.id == @employee.id || current_user.id == @employee.manager.id %>
+<% if current_user.id == @employee.id || (@employee.manager && current_user.id == @employee.manager.id) %>
 <%= link_to("Edit", edit_employee_url)%>
 <% end %>
 
-<!-- if employee is a manager -->
-<% if !@employee.manager %>
+<% if @employee.is_manager? %>
 <h3>Staff</h3>
+<%= link_to("Add staff", new_employee_url)%>
 <ul>
   <% @employee.staff.each do |member| %>
     <li><%= link_to(member.name, employee_url(member))%></li>
