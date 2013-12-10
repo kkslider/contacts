@@ -57,3 +57,31 @@ Connecting to database specified by database.yml
   [1m[35mSQL (0.5ms)[0m  INSERT INTO "employees" ("created_at", "email", "manager_id", "name", "phone", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Tue, 10 Dec 2013 00:13:20 UTC +00:00], ["email", "staff2@test.com"], ["manager_id", 1], ["name", "Staff Jessica"], ["phone", "333-333-3333"], ["updated_at", Tue, 10 Dec 2013 00:13:20 UTC +00:00]]
   [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
 Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateEmployees (20131210000631)
+Migrating to AddSessionToken (20131210002904)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateEmployees (20131210000631)
+Migrating to AddSessionToken (20131210002904)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (1.1ms)[0m  [1mALTER TABLE "employees" ADD COLUMN "string" session_token[0m
+PG::UndefinedObject: ERROR:  type "session_token" does not exist
+LINE 1: ALTER TABLE "employees" ADD COLUMN "string" session_token
+                                                    ^
+: ALTER TABLE "employees" ADD COLUMN "string" session_token
+  [1m[35m (0.4ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateEmployees (20131210000631)
+Migrating to AddSessionToken (20131210002904)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (3.6ms)[0m  [1mALTER TABLE "employees" ADD COLUMN "session_token" character varying(255)[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20131210002904')
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
