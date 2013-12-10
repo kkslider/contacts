@@ -1,0 +1,23 @@
+<h3>Edit User</h3>
+<form action="<%= employee_url %>" method="post">
+  <input type="hidden" 
+         name="_method" 
+        value="put">
+  <input type="hidden" 
+         name="authenticity_token" 
+        value="<%= form_authenticity_token %>">
+  
+  <label for="employee_email">Email:</label>
+  <input type="text" name="employee[email]" value="<%= @employee.email %>" id="employee_email">
+  <br>
+  
+  <label for="employee_name">Name:</label>
+  <input type="text" name="employee[name]" value="<%= @employee.name %>" id="employee_name">
+  <br>
+  
+  <label for="employee_phone">Phone:</label>
+  <input type="text" name="employee[phone]" value="<%= @employee.phone %>" id="employee_phone">
+  <br>
+  
+  <input type="submit" value="Save changes">
+</form>

@@ -1,17 +1,29 @@
-<% if !current_user.staff.empty? %>
+
 <h3><%= @employee.name %></h3>
 <p>Email: <%= @employee.email %></p>
 <% if @employee.phone %>
   <p>Phone: <%= @employee.phone %></p>
 <% end %>
+<% if current_user.id == @employee.id || current_user.id == @employee.manager.id %>
+<%= link_to("Edit", edit_employee_url)%>
+<% end %>
 
-<h3>Your Staff</h3>
+<!-- if employee is a manager -->
+<% if !@employee.manager %>
+<h3>Staff</h3>
 <ul>
-  <% current_user.staff.each do |member| %>
+  <% @employee.staff.each do |member| %>
     <li><%= link_to(member.name, employee_url(member))%></li>
   <% end %>
-<% end %>
 </ul>
+<% else %>
+<h3>Manager</h3>
+<p><%= link_to(@employee.manager.name, employee_url(@employee.manager)) %></p>
+<% end %>
+<br>
+<br>
+
+
 
 <% if current_user.id != @employee.id %>
 <%= link_to("Return to your page", employee_url(current_user)) %>
